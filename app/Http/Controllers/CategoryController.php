@@ -35,7 +35,8 @@ class CategoryController extends Controller
 
             $createCategory = Category::create([
                 "name" => $request->name,
-                "image" => $imageName
+                "image" => $imageName,
+                "organizer_id" => $request->organizer_id
             ]);
 
             return response()->json([

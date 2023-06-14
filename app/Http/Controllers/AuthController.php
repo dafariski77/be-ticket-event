@@ -11,14 +11,9 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            "name" => "required|string",
-            "email" => "required|string",
-            "password" => "required|string",
-            "confirmPassword" => "required|string"
-        ]);
+        User::validate($request);
 
-        if($request->password !== $request->confirmPassword) {
+        if ($request->password !== $request->confirmPassword) {
             return response()->json([
                 "message" => "Invalid Password!"
             ], Response::HTTP_BAD_REQUEST);
