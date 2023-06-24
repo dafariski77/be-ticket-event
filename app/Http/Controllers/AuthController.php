@@ -56,6 +56,7 @@ class AuthController extends Controller
 
         return response()->json([
             "message" => "Login success!",
+            "data" => $user,
             "token" => $token
         ], Response::HTTP_OK);
     }

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\TicketCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +29,18 @@ Route::middleware('auth:sanctum')->group(function () {
         'create', 'edit'
     ]);
 
+    Route::resource('/cms/event', EventController::class)->except([
+        'create', 'edit'
+    ]);
+
     Route::resource('/cms/organizer', OrganizerController::class)->except([
         'create', 'edit'
     ]);
+
+    Route::resource('/cms/ticket', TicketCategoryController::class)->except([
+        'create', 'edit'
+    ]);
+    
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 });
 
