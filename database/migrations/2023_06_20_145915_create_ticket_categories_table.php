@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->integer("price");
-            $table->unsignedBigInteger("event_id");
-            $table->foreign("event_id")->references("id")->on("events");
+            $table->unsignedBigInteger("event_id")->nullable()->unsigned();
+            $table->foreign("event_id")->references("id")->on("events")->cascadeOnDelete();
             $table->timestamps();
         });
     }

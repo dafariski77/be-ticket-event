@@ -15,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::with('category')->with("ticket_category")->get();
 
         return response()->json([
             "message" => "Success get all events data!",

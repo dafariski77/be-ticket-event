@@ -99,4 +99,13 @@ class TicketCategoryController extends Controller
             "data" => $ticket
         ], Response::HTTP_OK);
     }
+
+    public function getByEventId(string $id) {
+        $tickets = TicketCategory::where("event_id", $id)->get();
+
+        return response()->json([
+            "message" => "Success get tickets!",
+            "data" => $tickets
+        ], Response::HTTP_OK);
+    }
 }

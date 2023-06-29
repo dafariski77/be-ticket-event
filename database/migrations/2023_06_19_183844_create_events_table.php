@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum("status", ['Published', 'Draft'])->default("Draft");
             $table->string("image");
             $table->unsignedBigInteger("category_id")->nullable()->unsigned();
-            $table->foreign("category_id")->references("id")->on("categories");
+            $table->foreign("category_id")->references("id")->on("categories")->cascadeOnDelete();
             $table->timestamps();
         });
     }

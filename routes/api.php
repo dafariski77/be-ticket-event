@@ -23,6 +23,7 @@ Route::post('/auth/login', [AuthController::class, "login"]);
 Route::post('/auth/register', [AuthController::class, "register"]);
 
 Route::get('/category', [CategoryController::class, "index"]);
+Route::get('/event', [EventController::class, "index"]);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/cms/category', CategoryController::class)->except([
@@ -40,10 +41,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/cms/ticket', TicketCategoryController::class)->except([
         'create', 'edit'
     ]);
-    
+
+    Route::get('/cms/ticket/event/{id}', [TicketCategoryController::class, 'getByEventId']);
+
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 });
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
