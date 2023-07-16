@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TicketCategory extends Model
+class Order extends Model
 {
     protected $fillable = [
-        'name',
-        'price',
-        'event_id'
+        'total',
+        'user_id',
     ];
+
+    public function user()       
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function order_detail()
     {
         return $this->hasMany(OrderDetail::class);
     }
-
 }

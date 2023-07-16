@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\TicketCategoryController;
 use Illuminate\Http\Request;
@@ -24,6 +25,9 @@ Route::post('/auth/register', [AuthController::class, "register"]);
 
 Route::get('/category', [CategoryController::class, "index"]);
 Route::get('/event', [EventController::class, "index"]);
+Route::get('/event/{id}', [EventController::class, "show"]);
+
+Route::get('/ticket/event/{id}', [TicketCategoryController::class, 'getByEventId']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/cms/category', CategoryController::class)->except([
@@ -43,6 +47,10 @@ Route::middleware('auth:sanctum')->group(function () {
     ]);
 
     Route::get('/cms/ticket/event/{id}', [TicketCategoryController::class, 'getByEventId']);
+
+    Route::get('/user/order', [OrderController::class, 'index']);
+    Route::post('/user/order', [OrderController::class, 'store']);
+    Route::get('/user/order/{id}', [OrderController::class, 'show']);
 
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 });

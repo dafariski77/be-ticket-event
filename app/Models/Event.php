@@ -26,5 +26,4 @@ class Event extends Model
     {
         return $this->hasMany(TicketCategory::class);
     }
-
 }

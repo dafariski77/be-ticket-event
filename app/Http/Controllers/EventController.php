@@ -48,7 +48,7 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::find($id);
+        $event = Event::with('category')->find($id);
 
         if (!$event) {
             return response()->json([
