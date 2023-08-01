@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,8 @@ Route::post('/auth/register', [AuthController::class, "register"]);
 Route::get('/category', [CategoryController::class, "index"]);
 Route::get('/event', [EventController::class, "index"]);
 Route::get('/event/{id}', [EventController::class, "show"]);
+
+Route::get('/search/event', [SearchController::class, "search_event"]);
 
 Route::get('/ticket/event/{id}', [TicketCategoryController::class, 'getByEventId']);
 

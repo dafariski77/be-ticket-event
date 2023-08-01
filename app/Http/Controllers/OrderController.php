@@ -57,7 +57,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        $order = Order::with('order_detail')->find($id);
+        $order = Order::where('user_id', $id)->with('order_detail', 'user')->with('order_detail.ticket')->with('order_detail.event')->latest('created_at')->get();
 
         if (!$order) {
             return response()->json([
@@ -66,7 +66,7 @@ class OrderController extends Controller
         }
 
         return response()->json([
-            "message" => "Success get All Orders!",
+            "message" => "Success get Order data!",
             "data" => $order
         ], Response::HTTP_OK);
     }
